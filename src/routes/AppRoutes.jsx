@@ -22,10 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage></HomePage>,
-        loader: () =>
-          fetch(
-            `https://prod-rec-server-site.vercel.app/queries-limit/?limit=${6}`
-          ),
+        loader: () => fetch(`http://localhost:5000/queries-limit/?limit=${6}`),
       },
       {
         path: "/all-queries",
@@ -39,7 +36,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://prod-rec-server-site.vercel.app/query/${params.id}`),
+          fetch(`http://localhost:5000/query/${params.id}`),
       },
       {
         path: "/recommendation-for-me",
@@ -75,7 +72,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://prod-rec-server-site.vercel.app/query/${params.id}`),
+          fetch(`http://localhost:5000/query/${params.id}`),
       },
       {
         path: "/my-recommendations",
