@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
+import CommentSwiper from "../components/CommentSwiper";
 
 const QueryDetails = () => {
   const { user } = useContext(AuthContext);
@@ -15,6 +16,14 @@ const QueryDetails = () => {
   const [recommendationCount, setRecommendationCount] = useState(
     queryDetails.posted_by.recommendationCount,
   );
+  // console.log(queryDetails);
+
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/recommendations/${queryDetails._id}`)
+      .then((res) => res.json())
+      .then((data) => setComments(data));
+  }, [queryDetails._id]);
 
   const handleAddRecommendation = (e) => {
     e.preventDefault();
@@ -76,6 +85,9 @@ const QueryDetails = () => {
             .then((res) => {
               console.log(res.data);
               notify();
+              // console.log(comments);
+              const newComments = [recommendationData, ...comments];
+              setComments(newComments);
               form.reset();
             });
         }
@@ -259,6 +271,19 @@ const QueryDetails = () => {
               </section>
             </div>
           </div>
+        </div>
+
+        {/* All Recommendation */}
+        <div className="">
+          <h1 className="my-20 text-center text-4xl font-bold">
+            All Recommendations ({recommendationCount})
+          </h1>
+
+          {/* Comment Card */}
+          <CommentSwiper
+            comments={comments}
+            query_id={queryDetails._id}
+          ></CommentSwiper>
         </div>
       </main>
     </div>
