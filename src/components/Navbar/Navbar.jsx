@@ -4,16 +4,100 @@ import "./Navbar.css";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useTheme } from "../../provider/ThemeProvider";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { FcMenu } from "react-icons/fc";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { MdPerson } from "react-icons/md";
+import { BsCloudDrizzle, BsCloudRain, BsCloudSnow, BsSun, BsCloud } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const { theme, toggleTheme } = useTheme();
+  const [dateTime, setDateTime] = useState("");
+  const [weather, setWeather] = useState({ temp: null, condition: "", code: null, location: "" });
   const notify = () => toast.error("Logout Successfully");
+
+  // Update date and time
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      const options = { 
+        weekday: "short", 
+        year: "numeric", 
+        month: "short", 
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      };
+      setDateTime(now.toLocaleDateString("en-US", options));
+    };
+    
+    updateDateTime();
+    const timer = setInterval(updateDateTime, 60000); // Update every minute
+    return () => clearInterval(timer);
+  }, []);
+
+  // Fetch weather data using Open-Meteo API (free, no API key needed)
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        // Get user's location (using IP geolocation with free service)
+        const geoResponse = await fetch("https://ipapi.co/json/");
+        const geoData = await geoResponse.json();
+        const { latitude, longitude, city, country_name } = geoData;
+
+        console.log("Geo Data:", geoData);
+
+        // Fetch weather data
+        const weatherResponse = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&temperature_unit=celsius`
+        );
+        const weatherData = await weatherResponse.json();
+        const current = weatherData.current;
+        
+        // Map WMO weather codes to conditions
+        const getWeatherCondition = (code) => {
+          if (code === 0 || code === 1) return "Clear";
+          if (code === 2) return "Cloudy";
+          if (code === 3) return "Overcast";
+          if (code >= 45 && code <= 48) return "Foggy";
+          if (code >= 51 && code <= 67) return "Drizzle";
+          if (code >= 80 && code <= 82) return "Rainy";
+          if (code >= 85 && code <= 86) return "Showers";
+          if (code >= 71 && code <= 77) return "Snow";
+          return "Fair";
+        };
+
+        const locationName = city ? city : (country_name || "Your Location");
+
+        console.log("Location Name:", locationName);
+
+        setWeather({
+          temp: Math.round(current.temperature_2m),
+          condition: getWeatherCondition(current.weather_code),
+          code: current.weather_code,
+          location: locationName
+        });
+      } catch (error) {
+        console.error("Weather fetch error:", error);
+        setWeather({ temp: 25, condition: "Fair", code: 0, location: "Earth" });
+      }
+    };
+
+    fetchWeather();
+  }, []);
+
+  // Get weather icon based on condition
+  const getWeatherIcon = (code) => {
+    if (code === 0 || code === 1) return <BsSun className="text-yellow-400" />;
+    if (code === 2 || code === 3) return <BsCloud className="text-gray-400" />;
+    if (code >= 45 && code <= 48) return <BsCloud className="text-gray-500" />;
+    if (code >= 51 && code <= 67) return <BsCloudDrizzle className="text-blue-400" />;
+    if (code >= 80 && code <= 82) return <BsCloudRain className="text-blue-500" />;
+    if (code >= 71 && code <= 77) return <BsCloudSnow className="text-cyan-400" />;
+    return <BsCloud className="text-gray-400" />;
+  };
 
   const handleLogout = () => {
     logoutUser().then(() => {
@@ -110,6 +194,26 @@ const Navbar = () => {
                   <div className="my-3 px-2 border-b border-gray-200 dark:border-gray-700 pb-3">
                     <h1 className="font-bold text-gray-800 dark:text-white">{user?.displayName}</h1>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{user?.email}</p>
+                    
+                    {/* Date and Weather */}
+                    <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600 space-y-2">
+                      <p className="text-xs text-gray-600 dark:text-gray-300">{dateTime}</p>
+                      {weather.temp !== null && weather.condition && (
+                        <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-2">
+                          <div className="text-lg">
+                            {getWeatherIcon(weather.code)}
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-gray-800 dark:text-gray-200">
+                              {weather.location}
+                            </p>
+                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                              {weather.temp}°C
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {links}
@@ -178,6 +282,26 @@ const Navbar = () => {
                   <div className="my-3 px-2 border-b border-gray-200 dark:border-gray-700 pb-3">
                     <h1 className="font-bold text-lg text-gray-800 dark:text-white">{user?.displayName}</h1>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{user?.email}</p>
+                    
+                    {/* Date and Weather */}
+                    <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600 space-y-2">
+                      <p className="text-xs text-gray-600 dark:text-gray-300">{dateTime}</p>
+                      {weather.temp !== null && weather.condition && (
+                        <div className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-2">
+                          <div className="text-lg">
+                            {getWeatherIcon(weather.code)}
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-gray-800 dark:text-gray-200">
+                              {weather.location}
+                            </p>
+                            <p className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                              {weather.temp}°C
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Profile Button */}
