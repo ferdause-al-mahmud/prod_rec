@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import RecommendationCard from "../components/RecommendationCard";
 import { Link } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import noData from "../assets/no-data.jpg";
+import RecommendationCard from "../components/Cards/RecommendationCard";
 
 const RecommendationsForMe = () => {
   const { user } = useContext(AuthContext);

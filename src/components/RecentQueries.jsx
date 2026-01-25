@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import QueryCard from "./QueryCard";
+import QueryCard from "./Cards/QueryCard";
 
 const RecentQueries = () => {
   const queriesData = useLoaderData();
