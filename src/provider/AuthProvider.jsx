@@ -22,7 +22,17 @@ const AuthProvider = ({ children }) => {
 
   const loginWithGoogle = () => {
     setLoading(true);
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, provider).then((result) => {
+      const user = result.user;
+      // Save user data to backend
+      const userData = {
+        email: user.email,
+        name: user.displayName,
+        photo: user.photoURL,
+      };
+      axios.post("http://localhost:3000/save-user", userData);
+      return result;
+    });
   };
 
   const loginUser = (email, password) => {
@@ -34,9 +44,28 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const createUser = (email, password) => {
+  const createUser = (email, password, name = "User", photo = "") => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (result) => {
+        const user = result.user;
+
+        // Update Firebase profile with name and photo
+        return updateProfile(user, {
+          displayName: name,
+          photoURL: photo,
+        }).then(() => {
+          // Save user data to backend with registration data
+          const userData = {
+            email: email,
+            name: name,
+            photo: photo,
+          };
+          axios.post("http://localhost:3000/save-user", userData);
+          return result;
+        });
+      },
+    );
   };
 
   const profileUpdate = (updateData) => {
