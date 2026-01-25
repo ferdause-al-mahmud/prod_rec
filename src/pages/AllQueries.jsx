@@ -22,14 +22,14 @@ const AllQueries = () => {
   }, [searchText]);
 
   return (
-    <section className="w-11/12 md:w-full lg:w-5/6 px-4 mx-auto pt-12">
+    <section className="w-11/12 md:w-full lg:w-5/6 px-4 mx-auto pt-12 min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="flex flex-col md:flex-row justify-between">
         <div className="flex  items-center justify-center md:justify-start gap-x-3">
-          <h2 className="text-lg font-medium text-gray-800 ">
+          <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">
             All Posted Queries
           </h2>
 
-          <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
+          <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 rounded-full">
             {queries.length} Queries
           </span>
         </div>
@@ -39,38 +39,38 @@ const AllQueries = () => {
           <div className="flex gap-5 items-center my-5">
             <button
               onClick={() => setGrid(!grid)}
-              className={grid ? "btn btn-sm btn-info" : "btn btn-sm"}
+              className={`btn btn-sm transition-all duration-300 ${grid ? "btn-info" : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"}`}
             >
               <IoGridOutline />
             </button>
             <button
               onClick={() => setGrid(!grid)}
-              className={!grid ? "btn btn-sm btn-info" : "btn btn-sm"}
+              className={`btn btn-sm transition-all duration-300 ${!grid ? "btn-info" : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"}`}
             >
               <FaList />
             </button>
             {/* Post Your Queries Button */}
             <Link
               to={"/add-queries"}
-              className="btn px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full "
+              className="btn px-3 py-1 text-xs text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors duration-300"
             >
               <IoMdAdd />
               Post Your Queries
             </Link>
           </div>
 
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus-within:border-cyan-500 transition-colors duration-300">
             <input
               onKeyUp={(e) => setSearchText(e.target.value)}
               type="text"
-              className="grow"
+              className="grow bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
               placeholder="Search"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
               fill="currentColor"
-              className="h-4 w-4 opacity-70"
+              className="h-4 w-4 opacity-70 text-gray-600 dark:text-gray-400"
             >
               <path
                 fillRule="evenodd"
@@ -94,13 +94,13 @@ const AllQueries = () => {
             <div className="flex flex-col mt-6">
               <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                  <div className="overflow-hidden border border-gray-200  md:rounded-lg">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50">
+                  <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                      <thead className="bg-gray-50 dark:bg-gray-800">
                         <tr>
                           <th
                             scope="col"
-                            className="py-3.5 px-4 text-sm text-left rtl:text-right font-medium text-gray-600"
+                            className="py-3.5 px-4 text-sm text-left rtl:text-right font-medium text-gray-600 dark:text-gray-300"
                           >
                             <div className="flex items-center gap-x-3">
                               <span>Title</span>
@@ -109,14 +109,14 @@ const AllQueries = () => {
 
                           <th
                             scope="col"
-                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600"
+                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600 dark:text-gray-300"
                           >
                             <span>Posted Date</span>
                           </th>
 
                           <th
                             scope="col"
-                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600"
+                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600 dark:text-gray-300"
                           >
                             <button className="flex items-center gap-x-2">
                               <span>Product</span>
@@ -125,18 +125,18 @@ const AllQueries = () => {
 
                           <th
                             scope="col"
-                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600"
+                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600 dark:text-gray-300"
                           >
                             Category
                           </th>
                           <th
                             scope="col"
-                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600"
+                            className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600 dark:text-gray-300"
                           >
                             Boycotting Reason
                           </th>
 
-                          <th className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600">
+                          <th className="px-4 py-3.5 text-sm text-left rtl:text-right font-medium text-gray-600 dark:text-gray-300">
                             Total Recommendation
                           </th>
                         </tr>
@@ -144,44 +144,44 @@ const AllQueries = () => {
                       {queries.map((query) => (
                         <tbody
                           key={query._id}
-                          className="bg-white divide-y divide-gray-200 "
+                          className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700"
                         >
-                          <tr className="">
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                          <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
+                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                               {query.query_title.substring(0, 40)}...
                             </td>
 
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                               {format(
                                 new Date(query.posted_by.posted_date),
                                 "Pp",
                               )}
                             </td>
 
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                               {query.product_name}
                             </td>
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                               <div className="flex items-center gap-x-2">
                                 <p
-                                  className={`px-3 py-1  text-[#06d6a0] bg-[#bbffed9b] text-xs  rounded-full`}
+                                  className={`px-3 py-1 text-[#06d6a0] bg-[#bbffed9b] dark:bg-cyan-900/40 dark:text-cyan-300 text-xs rounded-full`}
                                 >
                                   {query.category}
                                 </p>
                               </div>
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                               {query.boycotting_reason.substring(0, 20)}...
                             </td>
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                               <div className="flex items-center gap-x-6">
-                                <span className="text-gray-500">
+                                <span className="text-gray-500 dark:text-gray-400">
                                   {query.posted_by.recommendationCount}
                                 </span>
 
                                 <Link
                                   to={`/query-details/${query._id}`}
-                                  className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
+                                  className="text-gray-500 dark:text-gray-400 transition-colors duration-200 hover:text-yellow-500 dark:hover:text-yellow-400 focus:outline-none"
                                 >
                                   <AiOutlineLike className="text-2xl" />
                                 </Link>

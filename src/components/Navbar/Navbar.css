@@ -9,6 +9,15 @@
   background-clip: padding-box, border-box;
 }
 
+.dark .navbar-wrapper {
+  background: linear-gradient(to right, #1f2937, #111827);
+  background-image: 
+    linear-gradient(to right, #1f2937, #111827),
+    linear-gradient(to right, #00c1a2, #0088cc);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
 /* Nav link styles */
 .nav-link {
   position: relative;
@@ -20,10 +29,19 @@
   display: inline-block;
 }
 
+.dark .nav-link {
+  color: #e5e7eb;
+}
+
 .nav-link:hover {
   color: #00c1a2;
   background-color: #00c1a208;
   transform: translateY(-2px);
+}
+
+.dark .nav-link:hover {
+  color: #00c1a2;
+  background-color: #00c1a215;
 }
 
 .nav-link::after {
@@ -49,6 +67,11 @@
   border-radius: 0.5rem;
 }
 
+.dark .nav-link.active {
+  color: #00c1a2;
+  background-color: #00c1a220;
+}
+
 .nav-link.active::after {
   width: 100%;
 }
@@ -65,20 +88,6 @@
   }
 }
 
-/* Custom tooltip styles */
-.custom-tooltip {
-  background-color: #1f2937 !important;
-  color: white !important;
-  border-radius: 0.5rem !important;
-  font-size: 0.875rem !important;
-  padding: 0.75rem !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
-}
-
-.custom-tooltip.show {
-  animation: slideInUp 0.3s ease-out;
-}
-
 /* Button transitions */
 .navbar-wrapper .btn {
   transition: all 0.3s ease-in-out;
@@ -88,6 +97,10 @@
 .navbar-wrapper .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 193, 162, 0.3);
+}
+
+.dark .navbar-wrapper .btn:hover {
+  box-shadow: 0 8px 16px rgba(0, 193, 162, 0.4);
 }
 
 /* Dropdown menu styles */
@@ -123,4 +136,10 @@
     padding-bottom: 0.75rem;
   }
 }
+
+/* Theme transition smooth effect */
+* {
+  @apply transition-colors duration-300;
+}
+
 

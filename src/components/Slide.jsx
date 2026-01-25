@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
+import { useTheme } from "../provider/ThemeProvider";
 
 const Slide = ({ slide, title, subTitle }) => {
+  const { theme } = useTheme();
+
   useEffect(() => {
     const elements = document.querySelectorAll('.slide-animate');
     elements.forEach((el) => {
@@ -12,14 +15,27 @@ const Slide = ({ slide, title, subTitle }) => {
 
   return (
     <div
-      className="hero h-[80vh] bg-contain bg-top relative overflow-hidden group"
+      className="hero min-h-screen w-full relative overflow-hidden group flex items-center justify-center"
       style={{
         backgroundImage: `url(${slide})`,
         backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
       }}
     >
-      <div className="hero-overlay bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      {/* Dynamic overlay based on theme */}
+      <div 
+        className="absolute inset-0 transition-all duration-500"
+        style={{
+          background: theme === 'dark' 
+            ? 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.2) 100%)'
+            : 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.3) 100%)'
+        }}
+      ></div>
+      
+      <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
       <div className="hero-content text-white text-center relative z-10">
         <div className="max-w-3xl">
           <h1 className="slide-animate mb-5 text-4xl lg:text-6xl font-bold opacity-0" style={{ transform: 'translateY(20px)', transition: 'all 0.8s ease-out 0.2s' }}>
