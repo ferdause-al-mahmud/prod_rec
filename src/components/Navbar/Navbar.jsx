@@ -38,64 +38,40 @@ const Navbar = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Fetch weather data using Open-Meteo API (free, no API key needed)
+  // Fetch weather data for Dhaka using WeatherAPI.com
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        // Get user's location (using IP geolocation with free service)
-        const geoResponse = await fetch("https://ipapi.co/json/");
-        const geoData = await geoResponse.json();
-        const { latitude, longitude, city, country_name } = geoData;
-
-        console.log("Geo Data:", geoData);
-
-        // Fetch weather data
         const weatherResponse = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&temperature_unit=celsius`
+          `https://api.weatherapi.com/v1/current.json?key=ec3dd34a18584ad4b76190451262501&q=Dhaka&aqi=no`
         );
         const weatherData = await weatherResponse.json();
         const current = weatherData.current;
-        
-        // Map WMO weather codes to conditions
-        const getWeatherCondition = (code) => {
-          if (code === 0 || code === 1) return "Clear";
-          if (code === 2) return "Cloudy";
-          if (code === 3) return "Overcast";
-          if (code >= 45 && code <= 48) return "Foggy";
-          if (code >= 51 && code <= 67) return "Drizzle";
-          if (code >= 80 && code <= 82) return "Rainy";
-          if (code >= 85 && code <= 86) return "Showers";
-          if (code >= 71 && code <= 77) return "Snow";
-          return "Fair";
-        };
-
-        const locationName = city ? city : (country_name || "Your Location");
-
-        console.log("Location Name:", locationName);
+        const location = weatherData.location;
 
         setWeather({
-          temp: Math.round(current.temperature_2m),
-          condition: getWeatherCondition(current.weather_code),
-          code: current.weather_code,
-          location: locationName
+          temp: Math.round(current.temp_c),
+          condition: current.condition.text,
+          code: current.condition.code,
+          location: `${location.name}, ${location.country}`
         });
       } catch (error) {
         console.error("Weather fetch error:", error);
-        setWeather({ temp: 25, condition: "Fair", code: 0, location: "Earth" });
+        setWeather({ temp: 25, condition: "Fair", code: 1000, location: "Dhaka, Bangladesh" });
       }
     };
 
     fetchWeather();
   }, []);
 
-  // Get weather icon based on condition
+  // Get weather icon based on condition code
   const getWeatherIcon = (code) => {
-    if (code === 0 || code === 1) return <BsSun className="text-yellow-400" />;
-    if (code === 2 || code === 3) return <BsCloud className="text-gray-400" />;
-    if (code >= 45 && code <= 48) return <BsCloud className="text-gray-500" />;
-    if (code >= 51 && code <= 67) return <BsCloudDrizzle className="text-blue-400" />;
-    if (code >= 80 && code <= 82) return <BsCloudRain className="text-blue-500" />;
-    if (code >= 71 && code <= 77) return <BsCloudSnow className="text-cyan-400" />;
+    if (code === 1000) return <BsSun className="text-yellow-400" />;
+    if (code === 1003) return <BsCloud className="text-gray-400" />;
+    if (code >= 1006 && code <= 1072) return <BsCloud className="text-gray-500" />;
+    if (code >= 1150 && code <= 1198) return <BsCloudDrizzle className="text-blue-400" />;
+    if (code >= 1201 && code <= 1282) return <BsCloudRain className="text-blue-500" />;
+    if (code >= 1285 && code <= 1303) return <BsCloudSnow className="text-cyan-400" />;
     return <BsCloud className="text-gray-400" />;
   };
 
