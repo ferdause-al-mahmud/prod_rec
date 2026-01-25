@@ -4,7 +4,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { IoMdAdd } from "react-icons/io";
 import { IoGridOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import QueryCard from "../components/QueryCard";
+import QueryCard from "../components/Cards/QueryCard";
 import axios from "axios";
 import { FaList } from "react-icons/fa";
 

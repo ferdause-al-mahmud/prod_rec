@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Pagination } from "swiper/modules";
-import CommentCard from "./CommentCard";
+import CommentCard from "./Cards/CommentCard";
 const CommentSwiper = ({ comments }) => {
   // console.log(comments);
   return (
