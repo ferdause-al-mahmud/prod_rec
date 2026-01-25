@@ -4,11 +4,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apply dark mode to HTML element */
+html.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Ubuntu", serif;
   font-size: 1rem;
   font-weight: 400;
   font-style: normal;
+  @apply bg-white text-gray-900;
+}
+
+html.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Main container dark mode */
+#root {
+  @apply w-full;
+}
+
+html.dark #root {
+  @apply bg-gray-900;
 }
 
 /* Floating blob animations */
@@ -93,5 +116,183 @@ body {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
+}
+
+/* Dark mode for common elements */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  @apply text-gray-100;
+}
+
+html.dark p {
+  @apply text-gray-300;
+}
+
+html.dark a {
+  @apply text-cyan-400 hover:text-cyan-300;
+}
+
+html.dark button {
+  @apply transition-all duration-300;
+}
+
+html.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+html.dark .bg-gray-50 {
+  @apply bg-gray-800;
+}
+
+html.dark .bg-gray-100 {
+  @apply bg-gray-800;
+}
+
+html.dark .bg-slate-900 {
+  @apply bg-gray-950;
+}
+
+html.dark .text-gray-800 {
+  @apply text-gray-200;
+}
+
+html.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+html.dark .text-gray-600 {
+  @apply text-gray-400;
+}
+
+html.dark .text-gray-500 {
+  @apply text-gray-400;
+}
+
+html.dark .text-black {
+  @apply text-white;
+}
+
+html.dark .border-gray-200 {
+  @apply border-gray-700;
+}
+
+html.dark .border-gray-300 {
+  @apply border-gray-600;
+}
+
+html.dark .bg-base-200 {
+  @apply bg-gray-700;
+}
+
+html.dark .bg-base-100 {
+  @apply bg-gray-800;
+}
+
+html.dark .btn-ghost {
+  @apply text-gray-200 hover:bg-gray-700;
+}
+
+html.dark .dropdown-content {
+  @apply bg-gray-800 border-gray-700;
+}
+
+html.dark .collapse {
+  @apply bg-gray-800 border-gray-700;
+}
+
+html.dark .collapse-title {
+  @apply text-gray-200;
+}
+
+html.dark .collapse-content {
+  @apply text-gray-300;
+}
+
+html.dark .menu {
+  @apply bg-gray-800;
+}
+
+html.dark .menu-item {
+  @apply text-gray-300;
+}
+
+/* Card dark mode */
+html.dark .card {
+  @apply bg-gray-800 text-gray-200;
+}
+
+html.dark .shadow-xl {
+  @apply shadow-2xl shadow-gray-950/50;
+}
+
+html.dark .shadow-lg {
+  @apply shadow-gray-950/40;
+}
+
+html.dark .shadow-md {
+  @apply shadow-gray-950/30;
+}
+
+/* Gradient backgrounds dark mode */
+html.dark .bg-gradient-to-br {
+  @apply from-gray-800 to-gray-900;
+}
+
+html.dark .bg-gradient-to-r {
+  @apply from-gray-800 to-gray-900;
+}
+
+html.dark .bg-gradient-to-l {
+  @apply from-gray-800 to-gray-900;
+}
+
+html.dark .bg-gradient-to-t {
+  @apply from-gray-900 to-gray-800;
+}
+
+html.dark .bg-gradient-to-b {
+  @apply from-gray-800 to-gray-900;
+}
+
+/* Badge and Alert dark mode */
+html.dark .badge {
+  @apply bg-gray-700 text-gray-200;
+}
+
+html.dark .alert {
+  @apply bg-gray-800 text-gray-200 border-gray-700;
+}
+
+/* Input and form dark mode */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  @apply bg-gray-700 text-gray-100 border-gray-600;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  @apply text-gray-400;
+}
+
+/* DaisyUI components dark mode */
+html.dark .tabs-lg > .tab {
+  @apply text-gray-300;
+}
+
+html.dark .tabs-lg > .tab.tab-active {
+  @apply text-white;
+}
+
+html.dark .pagination .btn {
+  @apply bg-gray-700 text-gray-200;
+}
+
+html.dark .pagination .btn.btn-active {
+  @apply bg-cyan-600;
 }
 

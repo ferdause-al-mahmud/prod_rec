@@ -15,7 +15,7 @@ import slide3 from "../assets/banner-3.jpg";
 
 const Banner = () => {
   return (
-    <div>
+    <div >
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
