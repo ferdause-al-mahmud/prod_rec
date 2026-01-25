@@ -18,8 +18,8 @@ const QueryCard = ({ query }) => {
   };
 
   return (
-    <div
-      // to={`/query-details/${query._id}`}
+    <Link
+      to={`/query-details/${query._id}`}
       className="card bg-base-100 rounded-lg w-[350px] lg:w-96 shadow-2xl hover:shadow-green-300 hover:scale-105 hover:ease-in-out duration-300"
     >
       <figure className="pt-8 ">
@@ -108,7 +108,7 @@ const QueryCard = ({ query }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
