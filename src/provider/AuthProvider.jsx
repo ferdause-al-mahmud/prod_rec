@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         const User = { email: currentUser.email };
         axios
-          .post("http://localhost:5000/jwt", User, {
+          .post("http://localhost:3000/jwt", User, {
             withCredentials: true,
           })
           .then((res) => {
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .post("http://localhost:3000/logout", {}, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
             setLoading(false);

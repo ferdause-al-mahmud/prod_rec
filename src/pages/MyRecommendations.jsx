@@ -30,7 +30,7 @@ const MyRecommendations = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/recommendations/${id}`)
+          .delete(`http://localhost:3000/recommendations/${id}`)
           .then((res) => {
             // console.log(res.data);
             if (res.data.deletedCount > 0) {
@@ -46,7 +46,7 @@ const MyRecommendations = () => {
 
               axios
                 .put(
-                  `http://localhost:5000/decrease-recommendationCount/${q_id}`,
+                  `http://localhost:3000/decrease-recommendationCount/${q_id}`,
                 )
                 .then((res) => {
                   console.log(res.data);

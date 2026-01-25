@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage></HomePage>,
-        loader: () => fetch(`http://localhost:5000/queries-limit/?limit=${6}`),
+        loader: () => fetch(`http://localhost:3000/queries-limit/?limit=${6}`),
       },
       {
         path: "/all-queries",
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/query/${params.id}`),
+          fetch(`http://localhost:3000/query/${params.id}`),
       },
       {
         path: "/recommendation-for-me",
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/query/${params.id}`),
+          fetch(`http://localhost:3000/query/${params.id}`),
       },
       {
         path: "/my-recommendations",

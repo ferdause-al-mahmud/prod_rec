@@ -36,7 +36,7 @@ const MyQueries = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/queries/${id}`).then((res) => {
+        axios.delete(`http://localhost:3000/queries/${id}`).then((res) => {
           // console.log(res.data);
           if (res.data.deletedCount > 0) {
             Swal.fire({

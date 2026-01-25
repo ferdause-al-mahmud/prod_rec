@@ -20,7 +20,7 @@ const QueryDetails = () => {
 
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/recommendations/${queryDetails._id}`)
+    fetch(`http://localhost:3000/recommendations/${queryDetails._id}`)
       .then((res) => res.json())
       .then((data) => setComments(data));
   }, [queryDetails._id]);
@@ -71,7 +71,7 @@ const QueryDetails = () => {
 
     // Add the recommendation to the database
     axios
-      .post("http://localhost:5000/recommendations", recommendationData)
+      .post("http://localhost:3000/recommendations", recommendationData)
       .then((res) => {
         // console.log(res.data);
         if (res.data.acknowledged === true) {
@@ -79,7 +79,7 @@ const QueryDetails = () => {
           // Add the query to the database
           axios
             .put(
-              `http://localhost:5000/update-recommendation-count/${queryDetails._id}`,
+              `http://localhost:3000/update-recommendation-count/${queryDetails._id}`,
               recommendationCount,
             )
             .then((res) => {

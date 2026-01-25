@@ -15,7 +15,7 @@ const AllQueries = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/queries?search=${searchText}`)
+      .get(`http://localhost:3000/queries?search=${searchText}`)
       .then((res) => {
         setQueries(res.data);
       });
