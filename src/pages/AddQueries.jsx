@@ -37,7 +37,7 @@ const AddQueries = () => {
     const notify = () => toast.success("Query Posted Successfully");
 
     // Add the query to the database
-    axios.post("http://localhost:5000/queries", queryData).then((res) => {
+    axios.post("http://localhost:3000/queries", queryData).then((res) => {
       console.log(res.data);
       if (res.data.acknowledged === true) {
         notify();

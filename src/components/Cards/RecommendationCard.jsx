@@ -8,7 +8,7 @@ const RecommendationCard = ({ query }) => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/recommendations/${query._id}`)
+    fetch(`http://localhost:3000/recommendations/${query._id}`)
       .then((res) => res.json())
       .then((data) => setRecommendations(data));
   }, [query._id]);

@@ -43,7 +43,7 @@ const EditQuery = () => {
 
     // Update query to the database
     axios
-      .put(`http://localhost:5000/query/${queryDetails._id}`, queryData)
+      .put(`http://localhost:3000/query/${queryDetails._id}`, queryData)
       .then((res) => {
         console.log(res.data);
         if (res.data.acknowledged === true) {

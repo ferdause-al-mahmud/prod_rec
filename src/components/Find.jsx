@@ -15,10 +15,10 @@ const Find = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/queries`)
+      .get(`http://localhost:3000/queries`)
       .then((res) => setQueries(res.data));
     axios
-      .get(`http://localhost:5000/recommendations`)
+      .get(`http://localhost:3000/recommendations`)
       .then((res) => setRecommendations(res.data));
   }, []);
   return (
