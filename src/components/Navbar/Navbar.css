@@ -1,10 +1,126 @@
-a.active {
-  color: #00c1a2;
-  background-color: #00af9228;
-  border-radius: 5px;
-  padding: 5px 10px;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s;
+/* Navbar wrapper styles */
+.navbar-wrapper {
+  background: linear-gradient(to right, #ffffff, #f8fafb);
+  border-bottom: 2px solid transparent;
+  background-image: 
+    linear-gradient(to right, #ffffff, #f8fafb),
+    linear-gradient(to right, #00c1a2, #0088cc);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
+
+/* Nav link styles */
+.nav-link {
+  position: relative;
+  color: #1f2937;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: #00c1a2;
+  background-color: #00c1a208;
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #00c1a2, #0088cc);
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: #00c1a2;
+  background-color: #00c1a218;
+  border-radius: 0.5rem;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .nav-link:hover {
+    transform: none;
+  }
+}
+
+/* Custom tooltip styles */
+.custom-tooltip {
+  background-color: #1f2937 !important;
+  color: white !important;
+  border-radius: 0.5rem !important;
+  font-size: 0.875rem !important;
+  padding: 0.75rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.custom-tooltip.show {
+  animation: slideInUp 0.3s ease-out;
+}
+
+/* Button transitions */
+.navbar-wrapper .btn {
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+}
+
+.navbar-wrapper .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 193, 162, 0.3);
+}
+
+/* Dropdown menu styles */
+.dropdown-content {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo and branding */
+.navbar-wrapper .navbar-start {
+  gap: 0.5rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .nav-link {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .navbar-wrapper {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
