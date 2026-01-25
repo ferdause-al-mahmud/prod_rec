@@ -8,6 +8,7 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { FcMenu } from "react-icons/fc";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { MdPerson } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -112,6 +113,48 @@ const Navbar = () => {
                   </div>
 
                   {links}
+
+                  {/* Profile Button - Mobile */}
+                  <li className="my-2 border-t border-gray-200 dark:border-gray-700 pt-2">
+                    <Link
+                      to="/profile"
+                      className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-cyan-100 dark:hover:bg-cyan-900/30 transition-colors duration-300 text-cyan-600 dark:text-cyan-400 font-medium"
+                    >
+                      <MdPerson className="text-xl" />
+                      View Profile
+                    </Link>
+                  </li>
+
+                  {/* Theme Toggle - Mobile */}
+                  <li className="my-2">
+                    <button
+                      onClick={toggleTheme}
+                      className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+                    >
+                      {theme === "light" ? (
+                        <>
+                          <MdDarkMode className="text-xl text-gray-700 dark:text-gray-300" />
+                          <span className="text-gray-800 dark:text-white font-medium">Dark</span>
+                        </>
+                      ) : (
+                        <>
+                          <MdLightMode className="text-xl text-yellow-500" />
+                          <span className="text-gray-800 dark:text-white font-medium">Light</span>
+                        </>
+                      )}
+                    </button>
+                  </li>
+
+                  {/* Logout Button - Mobile
+                  <li className="my-2">
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-3 px-3 py-2 bg-gradient-to-r from-[#ef476f] to-[#d62246] text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium"
+                    >
+                      <MdLogout className="text-xl" />
+                      Logout
+                    </button>
+                  </li> */}
                 </ul>
               </div>
 
@@ -136,6 +179,17 @@ const Navbar = () => {
                     <h1 className="font-bold text-lg text-gray-800 dark:text-white">{user?.displayName}</h1>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{user?.email}</p>
                   </div>
+
+                  {/* Profile Button */}
+                  <li className="my-2">
+                    <Link
+                      to="/profile"
+                      className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-cyan-100 dark:hover:bg-cyan-900/30 transition-colors duration-300 text-cyan-600 dark:text-cyan-400 font-medium"
+                    >
+                      <MdPerson className="text-xl" />
+                      View Profile
+                    </Link>
+                  </li>
 
                   {/* Theme Toggle */}
                   <li className="my-2">
