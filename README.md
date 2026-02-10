@@ -8,6 +8,31 @@
 
 A modern, full-featured product recommendation platform built with React, Vite, and Firebase. Users can query products, receive and give recommendations, manage their queries and recommendations, and interact with an intelligent chatbot system.
 
+## 📑 Table of Contents
+
+- [Features](#-features)
+  - [Core Features](#core-features)
+  - [UI/UX Features](#uiux-features)
+- [Architecture](#-architecture)
+  - [System Architecture](#system-architecture)
+  - [Design Patterns](#design-patterns)
+- [Folder Structure](#-folder-structure)
+- [Installation & Setup](#-installation--setup)
+  - [Prerequisites](#prerequisites)
+  - [Step-by-Step Installation](#step-1-clone-the-repository)
+- [Dependencies](#-dependencies)
+- [API Configuration](#-api-configuration)
+- [Security Features](#-security-features)
+- [Styling & Theme](#-styling--theme)
+- [Chatbot Integration](#-chatbot-integration)
+- [Additional Features](#-additional-features)
+- [Browser Support](#-browser-support)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Developer Information](#-developer-information)
+- [Support & Contact](#-support--contact)
+- [Roadmap](#-roadmap)
+
 ## 🌟 Features
 
 ### Core Features
@@ -399,9 +424,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👨‍💻 Developer Information
 
 - **Project Name**: ProdRec (Product Recommendation Platform)
-- **Frontend Repository**: [ferdause-al-mahmud/prod_rec](https://github.com/ferdause-al-mahmud/prod_rec)
+- **Repository**: [ferdause-al-mahmud/prod_rec](https://github.com/ferdause-al-mahmud/prod_rec)
 - **Backend Repository**: [ferdause-al-mahmud/prod_rec-backend](https://github.com/ferdause-al-mahmud/prod_rec-backend)
-
 
 ## 📞 Support & Contact
 
