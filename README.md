@@ -399,9 +399,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👨‍💻 Developer Information
 
 - **Project Name**: ProdRec (Product Recommendation Platform)
-- **Repository**: [ferdause-al-mahmud/prod_rec](https://github.com/ferdause-al-mahmud/prod_rec)
-- **Current Branch**: mahin
-- **Default Branch**: main
+- **Frontend Repository**: [ferdause-al-mahmud/prod_rec](https://github.com/ferdause-al-mahmud/prod_rec)
+- **Backend Repository**: [ferdause-al-mahmud/prod_rec-backend](https://github.com/ferdause-al-mahmud/prod_rec-backend)
+
 
 ## 📞 Support & Contact
 
